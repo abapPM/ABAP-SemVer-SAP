@@ -72,11 +72,11 @@ CLASS zcl_semver_sap IMPLEMENTATION.
     result = |{ int_ma }.{ int_mi }.{ int_pa }|.
 
     IF support_pack IS NOT INITIAL.
-      " 750 SP 2 > 7.5.0-2
+      " 750 SP 2 > 7.5.0-sp-2
       IF support_pack CO ' 0123456789'.
-        result &&= |-{ support_pack ALPHA = OUT }|.
+        result &&= |-sp-{ support_pack ALPHA = OUT }|.
       ELSE.
-        result &&= |-{ support_pack }|.
+        result &&= |-sp-{ support_pack }|.
       ENDIF.
     ENDIF.
 
@@ -131,9 +131,14 @@ CLASS zcl_semver_sap IMPLEMENTATION.
     release = semver_to_sap_release( version ).
 
     IF version CS '-'.
-      SPLIT version AT '-' INTO DATA(rest) DATA(pr).
-      IF pr CO ' 0123456789'.
-        sp = pr.
+      SPLIT version AT '-' INTO DATA(rest) DATA(pre).
+
+      IF pre CP 'sp-*'.
+        SPLIT pre AT '-' INTO rest pre.
+      ENDIF.
+
+      IF pre CO ' 0123456789'.
+        sp = pre.
       ENDIF.
     ENDIF.
 
