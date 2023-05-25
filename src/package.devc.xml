@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DEVC>
-    <CTEXT>Semantic Version for SAP Releases (SAPVER)</CTEXT>
+    <CTEXT>apm - Semantic Version for SAP Releases (SAPVER)</CTEXT>
    </DEVC>
   </asx:values>
  </asx:abap>
