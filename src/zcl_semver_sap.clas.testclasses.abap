@@ -32,17 +32,21 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     tap->_( cut->sap_release_to_semver( '2011_1_731' ) )->eq( '2011.1.731' ).
 
+    tap->_( cut->sap_release_to_semver( '01V_731' ) )->eq( '7.3.1' ).
+
   ENDMETHOD.
 
   METHOD sap_release_sp_to_semver.
 
-    tap->_( cut->sap_release_to_semver( release = '750' support_pack = '0012' ) )->eq( '7.5.0-sp-12' ).
+    tap->_( cut->sap_release_to_semver( release = '750' support_pack = '0012' ) )->eq( '7.5.0-sp.12' ).
 
-    tap->_( cut->sap_release_to_semver( release = '75E' support_pack = '2' ) )->eq( '7.5.14-sp-2' ).
+    tap->_( cut->sap_release_to_semver( release = '75E' support_pack = '2' ) )->eq( '7.5.14-sp.2' ).
 
-    tap->_( cut->sap_release_to_semver( release = '1809' support_pack = '0000000001' ) )->eq( '18.9.0-sp-1' ).
+    tap->_( cut->sap_release_to_semver( release = '1809' support_pack = '0000000001' ) )->eq( '18.9.0-sp.1' ).
 
-    tap->_( cut->sap_release_to_semver( release = '2011_1_731' support_pack = '0012' ) )->eq( '2011.1.731-sp-12' ).
+    tap->_( cut->sap_release_to_semver( release = '2011_1_731' support_pack = '0012' ) )->eq( '2011.1.731-sp.12' ).
+
+    tap->_( cut->sap_release_to_semver( release = '01V_731' support_pack = '0002' ) )->eq( '7.3.1-sp.2' ).
 
   ENDMETHOD.
 
@@ -78,7 +82,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '7.5.0-sp-12'
+        version      = '7.5.0-sp.12'
       IMPORTING
         release      = release
         support_pack = support_pack ).
@@ -88,7 +92,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '7.5.14-sp-2'
+        version      = '7.5.14-sp.2'
       IMPORTING
         release      = release
         support_pack = support_pack ).
@@ -98,7 +102,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '18.9.0-sp-1'
+        version      = '18.9.0-sp.1'
       IMPORTING
         release      = release
         support_pack = support_pack ).
@@ -108,7 +112,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '2011.1.731-sp-12'
+        version      = '2011.1.731-sp.12'
       IMPORTING
         release      = release
         support_pack = support_pack ).

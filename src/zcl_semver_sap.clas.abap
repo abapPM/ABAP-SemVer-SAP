@@ -59,8 +59,12 @@ CLASS zcl_semver_sap IMPLEMENTATION.
           " 2011_1_731 > 2011.1.731
           FIND REGEX '^(\d+)_(\d+)_(\d+)\s*$' IN release SUBMATCHES ma mi pa.
           IF sy-subrc <> 0.
-            " unknown pattern...
-            RAISE EXCEPTION TYPE cx_abap_invalid_value.
+            " ST-A/PI: 01V_731 > 7.3.1
+            FIND REGEX '^01._(\d)(\d)(\d)\s*$' IN release SUBMATCHES ma mi pa.
+            IF sy-subrc <> 0.
+              " unknown pattern... open GitHub issue
+              RAISE EXCEPTION TYPE cx_abap_invalid_value.
+            ENDIF.
           ENDIF.
         ENDIF.
       ENDIF.
@@ -72,11 +76,11 @@ CLASS zcl_semver_sap IMPLEMENTATION.
     result = |{ int_ma }.{ int_mi }.{ int_pa }|.
 
     IF support_pack IS NOT INITIAL.
-      " 750 SP 2 > 7.5.0-sp-2
+      " 750 SP 2 > 7.5.0-sp.2
       IF support_pack CO ' 0123456789'.
-        result &&= |-sp-{ support_pack ALPHA = OUT }|.
+        result &&= |-sp.{ support_pack ALPHA = OUT }|.
       ELSE.
-        result &&= |-sp-{ support_pack }|.
+        result &&= |-sp.{ support_pack }|.
       ENDIF.
     ENDIF.
 
@@ -133,8 +137,8 @@ CLASS zcl_semver_sap IMPLEMENTATION.
     IF version CS '-'.
       SPLIT version AT '-' INTO DATA(rest) DATA(pre).
 
-      IF pre CP 'sp-*'.
-        SPLIT pre AT '-' INTO rest pre.
+      IF pre CP 'sp.*'.
+        SPLIT pre AT '.' INTO rest pre.
       ENDIF.
 
       IF pre CO ' 0123456789'.
