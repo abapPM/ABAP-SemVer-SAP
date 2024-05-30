@@ -24,29 +24,31 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
   METHOD sap_release_to_semver.
 
-    tap->_( cut->sap_release_to_semver( '750' ) )->eq( '7.5.0' ).
+    tap->_( cut->sap_release_to_semver( '750' ) )->eq( '7.50.0' ).
+    tap->_( cut->sap_release_to_semver( '789' ) )->eq( '7.89.0' ).
 
-    tap->_( cut->sap_release_to_semver( '75E' ) )->eq( '7.5.14' ).
+    tap->_( cut->sap_release_to_semver( '75E' ) )->eq( '7.50.500' ).
 
     tap->_( cut->sap_release_to_semver( '1809' ) )->eq( '18.9.0' ).
 
-    tap->_( cut->sap_release_to_semver( '2011_1_731' ) )->eq( '2011.1.731' ).
+    tap->_( cut->sap_release_to_semver( '2011_1_731' ) )->eq( '7.31.0' ).
 
-    tap->_( cut->sap_release_to_semver( '01V_731' ) )->eq( '7.3.1' ).
+    tap->_( cut->sap_release_to_semver( '01V_731' ) )->eq( '7.31.0' ).
 
   ENDMETHOD.
 
   METHOD sap_release_sp_to_semver.
 
-    tap->_( cut->sap_release_to_semver( release = '750' support_pack = '0012' ) )->eq( '7.5.0-sp.12' ).
+    tap->_( cut->sap_release_to_semver( release = '750' support_pack = '0012' ) )->eq( '7.50.12' ).
+    tap->_( cut->sap_release_to_semver( release = '789' support_pack = '1' ) )->eq( '7.89.1' ).
 
-    tap->_( cut->sap_release_to_semver( release = '75E' support_pack = '2' ) )->eq( '7.5.14-sp.2' ).
+    tap->_( cut->sap_release_to_semver( release = '75E' support_pack = '2' ) )->eq( '7.50.502' ).
 
-    tap->_( cut->sap_release_to_semver( release = '1809' support_pack = '0000000001' ) )->eq( '18.9.0-sp.1' ).
+    tap->_( cut->sap_release_to_semver( release = '1809' support_pack = '0000000001' ) )->eq( '18.9.1' ).
 
-    tap->_( cut->sap_release_to_semver( release = '2011_1_731' support_pack = '0012' ) )->eq( '2011.1.731-sp.12' ).
+    tap->_( cut->sap_release_to_semver( release = '2011_1_731' support_pack = '0012' ) )->eq( '7.31.12' ).
 
-    tap->_( cut->sap_release_to_semver( release = '01V_731' support_pack = '0002' ) )->eq( '7.3.1-sp.2' ).
+    tap->_( cut->sap_release_to_semver( release = '01V_731' support_pack = '0002' ) )->eq( '7.31.2' ).
 
   ENDMETHOD.
 
@@ -64,13 +66,12 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
   METHOD semver_to_sap_release.
 
-    tap->_( cut->semver_to_sap_release( '7.5.0' ) )->eq( '750' ).
+    tap->_( cut->semver_to_sap_release( '7.50.0' ) )->eq( '750' ).
+    tap->_( cut->semver_to_sap_release( '7.89.1' ) )->eq( '789' ).
 
-    tap->_( cut->semver_to_sap_release( '7.5.14' ) )->eq( '75E' ).
+    tap->_( cut->semver_to_sap_release( '7.50.500' ) )->eq( '75E' ).
 
     tap->_( cut->semver_to_sap_release( '18.9.0' ) )->eq( '1809' ).
-
-    tap->_( cut->semver_to_sap_release( '2011.1.731' ) )->eq( '2011_1_731' ).
 
   ENDMETHOD.
 
@@ -82,7 +83,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '7.5.0-sp.12'
+        version      = '7.50.12'
       IMPORTING
         release      = release
         support_pack = support_pack ).
@@ -92,7 +93,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '7.5.14-sp.2'
+        version      = '7.50.502'
       IMPORTING
         release      = release
         support_pack = support_pack ).
@@ -102,7 +103,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
 
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '18.9.0-sp.1'
+        version      = '18.9.1'
       IMPORTING
         release      = release
         support_pack = support_pack ).
@@ -110,20 +111,10 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
     tap->_( release )->eq( '1809' ).
     tap->_( support_pack )->eq( '0000000001' ).
 
-    cut->semver_to_sap_release_sp(
-      EXPORTING
-        version      = '2011.1.731-sp.12'
-      IMPORTING
-        release      = release
-        support_pack = support_pack ).
-
-    tap->_( release )->eq( '2011_1_731' ).
-    tap->_( support_pack )->eq( '0000000012' ).
-
     " No sp given
     cut->semver_to_sap_release_sp(
       EXPORTING
-        version      = '7.5.0'
+        version      = '7.50.0'
       IMPORTING
         release      = release
         support_pack = support_pack ).
