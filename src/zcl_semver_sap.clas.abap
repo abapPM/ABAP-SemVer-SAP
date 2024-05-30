@@ -129,7 +129,7 @@ CLASS zcl_semver_sap IMPLEMENTATION.
 
     FIND REGEX '^(\d+)\.(\d+)\.(\d+)' IN version SUBMATCHES DATA(ma) DATA(mi) DATA(pa).
     IF sy-subrc = 0 AND pa > 100.
-      pa = pa MOD 100.
+      pa = substring( val = pa off = strlen( pa ) - 2 ).
     ENDIF.
 
     support_pack = |{ pa ALIGN = RIGHT WIDTH = 10 PAD = '0' }|.
