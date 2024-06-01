@@ -3,6 +3,12 @@ CLASS zcl_semver_sap DEFINITION
   FINAL
   CREATE PUBLIC.
 
+************************************************************************
+* Semantic Version for SAP Release Mapping
+*
+* Copyright (c) apm.to <https://apm.to>
+* SPDX-License-Identifier: MIT
+************************************************************************
   PUBLIC SECTION.
 
     METHODS sap_release_to_semver
