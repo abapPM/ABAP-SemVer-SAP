@@ -9,6 +9,7 @@ CLASS ltcl_tests_semver_sap DEFINITION FOR TESTING RISK LEVEL HARMLESS
       setup,
       sap_release_to_semver FOR TESTING RAISING cx_abap_invalid_value,
       sap_release_sp_to_semver FOR TESTING RAISING cx_abap_invalid_value,
+      sap_component_to_semver FOR TESTING RAISING cx_abap_invalid_value,
       cvers_to_semver FOR TESTING RAISING cx_abap_invalid_value,
       semver_to_sap_release FOR TESTING RAISING cx_abap_invalid_value,
       semver_to_sap_release_sp FOR TESTING RAISING cx_abap_invalid_value.
@@ -49,6 +50,10 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
     tap->_( cut->sap_release_to_semver( release = '2011_1_731' support_pack = '0012' ) )->eq( '7.31.12' ).
 
     tap->_( cut->sap_release_to_semver( release = '01V_731' support_pack = '0002' ) )->eq( '7.31.2' ).
+
+  ENDMETHOD.
+
+  METHOD sap_component_to_semver.
 
   ENDMETHOD.
 
