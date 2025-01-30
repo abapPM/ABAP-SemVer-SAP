@@ -9,6 +9,11 @@
       "files": "/src/**/*.*",
       "folder": "/deps2",
       "url": "https://github.com/abapPM/ABAP-Error"
+    },
+    {
+      "files": "/src/**/*.*",
+      "folder": "/deps3",
+      "url": "https://github.com/abapPM/ABAP-Tap"
     }
   ],
   "global": {
@@ -180,7 +185,7 @@
       "aqqu": "^Z",
       "aqsg": "^Z",
       "auth": "^Z",
-      "clas": "^ZC(L|X)\\_",
+      "clas": "^ZC(L|X)\\_SEMVER_SAP",
       "cmod": "^Z",
       "doma": "^Z",
       "dtel": "^Z",
@@ -192,7 +197,7 @@
       "idoc": "^Z",
       "ignoreNames": [],
       "ignorePatterns": [],
-      "intf": "^ZIF\\_",
+      "intf": "^ZIF\\_SEMVER_SAP",
       "msag": "^Z",
       "patternKind": "required",
       "pinf": "^Z",
