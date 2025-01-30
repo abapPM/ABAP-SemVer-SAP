@@ -240,7 +240,9 @@
     "remove_descriptions": true,
     "rfc_error_handling": true,
     "select_add_order_by": false,
-    "select_performance": true,
+    "select_performance": {
+      "selectStar": false,
+    },
     "select_single_full_key": true,
     "selection_screen_naming": true,
     "sequential_blank": true,
