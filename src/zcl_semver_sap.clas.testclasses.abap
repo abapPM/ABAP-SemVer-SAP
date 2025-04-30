@@ -54,7 +54,7 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD sap_component_to_semver.
-    RETURN.
+    ASSERT 1 = 1.
   ENDMETHOD.
 
   METHOD cvers_to_semver.
