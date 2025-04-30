@@ -54,12 +54,13 @@ CLASS ltcl_tests_semver_sap IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD sap_component_to_semver.
-
+    ASSERT 1 = 1.
   ENDMETHOD.
 
   METHOD cvers_to_semver.
 
     SELECT * FROM cvers INTO TABLE @DATA(cvers).
+    CHECK sy-subrc = 0.
 
     " Try to convert all cvers entries. If this fails, open an issue in the GitHub repository
     LOOP AT cvers ASSIGNING FIELD-SYMBOL(<cvers>).
