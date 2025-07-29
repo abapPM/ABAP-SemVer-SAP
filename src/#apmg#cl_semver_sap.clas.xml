@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_SEMVER_SAP</CLSNAME>
+    <CLSNAME>/APMG/CL_SEMVER_SAP</CLSNAME>
     <LANGU>E</LANGU>
     <DESCRIPT>Semantic Version - SAP Release Mapping</DESCRIPT>
     <STATE>1</STATE>
