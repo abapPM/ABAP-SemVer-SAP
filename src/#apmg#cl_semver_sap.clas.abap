@@ -1,4 +1,4 @@
-CLASS zcl_semver_sap DEFINITION
+CLASS /apmg/cl_semver_sap DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC.
@@ -12,15 +12,14 @@ CLASS zcl_semver_sap DEFINITION
 * Note: Since SAP does not use semantic versioning, this class
 * implements a bi-directional mapping covering as many cases as possible
 ************************************************************************
-
   PUBLIC SECTION.
 
     CONSTANTS c_version TYPE string VALUE '1.0.0' ##NEEDED.
 
     METHODS sap_release_to_semver
       IMPORTING
-        release       TYPE cvers-release
-        support_pack  TYPE cvers-extrelease OPTIONAL
+        !release      TYPE cvers-release
+        !support_pack TYPE cvers-extrelease OPTIONAL
       RETURNING
         VALUE(result) TYPE string
       RAISING
@@ -28,7 +27,7 @@ CLASS zcl_semver_sap DEFINITION
 
     METHODS sap_component_to_semver
       IMPORTING
-        component     TYPE cvers-component
+        !component    TYPE cvers-component
       RETURNING
         VALUE(result) TYPE string
       RAISING
@@ -36,7 +35,7 @@ CLASS zcl_semver_sap DEFINITION
 
     METHODS semver_to_sap_release
       IMPORTING
-        version       TYPE string
+        !version      TYPE string
       RETURNING
         VALUE(result) TYPE cvers-release
       RAISING
@@ -44,21 +43,20 @@ CLASS zcl_semver_sap DEFINITION
 
     METHODS semver_to_sap_release_sp
       IMPORTING
-        version      TYPE string
+        !version      TYPE string
       EXPORTING
-        release      TYPE cvers-release
-        support_pack TYPE cvers-extrelease
+        !release      TYPE cvers-release
+        !support_pack TYPE cvers-extrelease
       RAISING
         cx_abap_invalid_value.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
-
 ENDCLASS.
 
 
 
-CLASS zcl_semver_sap IMPLEMENTATION.
+CLASS /apmg/cl_semver_sap IMPLEMENTATION.
 
 
   METHOD sap_component_to_semver.
