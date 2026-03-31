@@ -1,16 +1,18 @@
 {
-  "name": "xxx",
+  "name": "semver-sap",
   "version": "1.0.0",
-  "description": "XXX",
+  "description": "Mapping between SAP Releases and Semantic Versions (SAPVER)",
   "type": "module",
   "keywords": [
     "abap",
     "apm",
-    "module"
+    "module",
+    "sap",
+    "semver"
   ],
   "homepage": "https://abappm.com",
   "bugs": {
-    "url": "https://github.com/abapPM/ABAP-XXX"
+    "url": "https://github.com/abapPM/ABAP-SemVer-SAP"
   },
   "license": "MIT",
   "author": {
@@ -26,7 +28,7 @@
     }
   ],
   "repository": {
-    "url": "https://github.com/abapPM/ABAP-XXX"
+    "url": "https://github.com/abapPM/ABAP-SemVer-SAP"
   },
   "funding": {
     "type": "github",
@@ -34,6 +36,9 @@
   },
   "dependencies": {
     "error": "^1.0.0"
+  },
+  "devDependencies": {
+    "tap": "^1.0.0"
   },
   "engines": {
     "abap": ">=7.50",
