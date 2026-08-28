@@ -8,7 +8,7 @@
     {
       "files": "/src/**/*.*",
       "folder": "/deps2",
-      "url": "https://github.com/abapPM/ABAP-Error"
+      "url": "https://github.com/abapPM/ABAP-Exceptions"
     },
     {
       "files": "/src/**/*.*",
@@ -242,7 +242,7 @@
     "rfc_error_handling": true,
     "select_add_order_by": false,
     "select_performance": {
-      "selectStar": false,
+      "selectStar": false
     },
     "select_single_full_key": true,
     "selection_screen_naming": true,
